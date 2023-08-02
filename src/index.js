@@ -28,13 +28,9 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'http://localhost:3000',
-      description: 'Development server',
+      url: config.NODE_ENV === 'local' ? 'http://localhost:3000' : config.DOMAIN,
+      description: config.NODE_ENV === 'local'? 'Development server' : 'Production server',
     },
-    {
-      url: config.DOMAIN,
-      description: 'Production server'
-    }
   ],
 };
 
