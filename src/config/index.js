@@ -5,7 +5,7 @@ dotenv.config();
 const config = {
   NODE_ENV: process.env.NODE_ENV,
   PORT: process.env.PORT,
-  CLIENT_URL: process.env.CLIENT_URL,
+  DOMAIN: process.env.DOMAIN,
   MONGO_URI: process.env.MONGO_URI,
 }
 
