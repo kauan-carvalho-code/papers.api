@@ -1,48 +1,49 @@
-import { Router } from "express";
+import PapersService from "../services/papers";
 
-import {
-  getPapers,
-  createPaper,
-  editPaper,
-  deletePaper,
-} from "../services/papers";
-
-const router = Router();
-
-router.get("/", async (_req, res) => {
+const getPapers = async (_req, res) => {
   try {
-    const papers = await getPapers();
+    const papers = await PapersService.getPapers();
     res.status(200).send(papers);
   } catch (error) {
     res.status(400).send(error);
   }
-});
+};
 
-router.post("/", async (req, res) => {
+const createPaper = async (req, res) => {
   try {
-    const newPaper = await createPaper(req.body);
+    const newPaper = await PapersService.createPaper(req.body);
     res.status(201).send(newPaper);
   } catch (error) {
     res.status(400).send(error);
   }
-});
+};
 
-router.put("/:paperId", async (req, res) => {
+const editPaper = async (req, res) => {
   try {
-    const updatedPaper = await editPaper(req.params.paperId, req.body);
+    const updatedPaper = await PapersService.editPaper(
+      req.params.paperId,
+      req.body
+    );
     res.status(200).send(updatedPaper);
   } catch (error) {
     res.status(400).send(error);
   }
-});
+};
 
-router.delete("/:paperId", async (req, res) => {
+const deletePaper = async (req, res) => {
   try {
-    const deletedPaper = await deletePaper(req.params.paperId);
+    const deletedPaper = await PapersService.deletePaper(req.params.paperId);
     res.status(200).send(deletedPaper);
   } catch (error) {
     res.status(400).send(error);
   }
-});
+};
 
-export default router;
+const papersController = {
+  getPapers,
+  createPaper,
+  editPaper,
+  deletePaper,
+};
+
+export default papersController;

@@ -1,21 +1,28 @@
 import Papers from "../models/papers";
 
-export const getPapers = async () => {
-  const papers = await Papers.find();
-  return papers;
+const getPapers = async () => {
+  return Papers.find();
 };
 
-export const createPaper = async (newPaper) => {
-  const createdPaper = await Papers.create(newPaper);
-  return createdPaper;
+const createPaper = async (newPaper) => {
+  return Papers.create(newPaper);
 };
 
-export const editPaper = async (paperId, newBody) => {
-  const updatedPaper = await Papers.findByIdAndUpdate(paperId, newBody, { new: true });
-  return updatedPaper;
+const editPaper = async (paperId, updatedPaper) => {
+  return Papers.findByIdAndUpdate(paperId, updatedPaper, {
+    new: true,
+  });
 };
 
-export const deletePaper = async (paperId) => {
-  const deletedPaper = await Papers.findByIdAndDelete(paperId);
-  return deletedPaper;
-}
+const deletePaper = async (paperId) => {
+  return Papers.findByIdAndDelete(paperId);
+};
+
+const papersService = {
+  getPapers,
+  createPaper,
+  editPaper,
+  deletePaper,
+};
+
+export default papersService;
